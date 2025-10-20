@@ -1,0 +1,43 @@
+﻿@startuml
+interface IReportable {
+  + CalculatePerformanceRating(): double
+  + GetInfo(): string
+}
+
+abstract class SalesPerson{
+  - int _id
+  - int _idCounter
+  - string _name
+  - string _email
+  - date _startDate
+  - List<double> _salesFigures
+  - string _Deparment
+  + static int TotalSalesPeople
+  + int Id { get;}
+  + string Name { get; set; }
+  + string Email{ get; set; }
+  + string Department{ get; }
+  + DateTime StartDate { get; set; }
+  + IReadOnlyList<double> SalesFigures { get; }
+  + int Experience { get; }
+  + AddSalesFigure(salesAmount)
+  + ClearSalesFigures()
+  + IsExperienced()
+  + CalculatePerformanceRating()
+  + GetInfo()
+  + event GradeAlertHandler GradeBelowThreshold
+  + CheckAndRaiseAlerts(performanceRating)
+}
+
+class RegularSalesRep
+class PremiumSalesRep
+class ContractSalesRep
+class SalesTeam
+class DataValidator <<static>>
+
+IReportable <|.. SalePerson
+SalesPerson <|-- RegularSalesRep
+SalesPerson<|-- PremiumSalesRep
+SalesPerson<|-- ContractSalesRep
+SalesTeam"1" *-- "*" SalesPerson
+@enduml
